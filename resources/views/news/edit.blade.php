@@ -6,10 +6,12 @@
         @csrf
         @method('PUT')
 
-        <div class="mb-3">
-            <label class="form-label">Titel</label>
-            <input type="text" name="title" class="form-control" value="{{ $news->title }}">
-        </div>
+        <x-form-text-input
+            label="Titel"
+            name="title"
+            value="{{$news->title}}"
+            placeholder="geef de titel op, start met hoofdletter, geen leestekens"
+        />
 
         <div class="mb-3">
             <label class="form-label">Inhoud</label>

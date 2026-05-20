@@ -5,15 +5,19 @@
     <form method="POST" action="{{ route('news.store') }}">
         @csrf
 
-        <div class="mb-3">
-            <label class="form-label">Titel</label>
-            <input type="text" name="title" class="form-control">
-        </div>
+        <x-form-text-input
+            label="Titel"
+            name="title"
+            placeholder="geef de titel op"
+        />
 
-        <div class="mb-3">
-            <label class="form-label">Inhoud</label>
-            <textarea name="content" class="form-control"></textarea>
-        </div>
+        <x-form-text-input
+            label="Inhoud"
+            name="content"
+            placeholder="geef de inhoud "
+        />
+
+
 
         <button class="btn btn-success">Opslaan</button>
     </form>
