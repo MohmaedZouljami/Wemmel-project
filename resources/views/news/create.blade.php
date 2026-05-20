@@ -1,13 +1,21 @@
-<h1>Nieuw nieuwsbericht</h1>
+<x-site-layout title="Nieuw nieuwsbericht">
 
-<form method="POST" action="{{ route('news.store') }}">
-    @csrf
+    <h1 class="mb-4">Nieuw nieuwsbericht</h1>
 
-    <label>Titel</label>
-    <input type="text" name="title">
+    <form method="POST" action="{{ route('news.store') }}">
+        @csrf
 
-    <label>Inhoud</label>
-    <textarea name="content"></textarea>
+        <div class="mb-3">
+            <label class="form-label">Titel</label>
+            <input type="text" name="title" class="form-control">
+        </div>
 
-    <button type="submit">Opslaan</button>
-</form>
+        <div class="mb-3">
+            <label class="form-label">Inhoud</label>
+            <textarea name="content" class="form-control"></textarea>
+        </div>
+
+        <button class="btn btn-success">Opslaan</button>
+    </form>
+
+</x-site-layout>

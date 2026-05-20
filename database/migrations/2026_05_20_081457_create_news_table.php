@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->string('author');
+            $table->string('author')->nullable();
             $table->timestamps();
             $table->string('category')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();

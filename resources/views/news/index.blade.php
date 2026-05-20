@@ -1,27 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Alle News</title>
-</head>
-<body>
-<h1>Alle News</h1>
+<x-site-layout title="Alle nieuwsberichten">
 
-@if ($newsItems->count() === 0)
-    <p>Geen news items gevonden.</p>
-@else
-    <ul>
-        @foreach ($newsItems as $news)
-            <li class="news-item">
-                <h2>{{ $news->title }}</h2>
-                <p class="meta">
-                    Door {{ $news->user?->name ?? 'Onbekende auteur' }},
-                    {{ $news->created_at }}
-                </p>
-            </li>
-        @endforeach
-    </ul>
-@endif
-</body>
-</html>
+    <h1 class="mb-4">Alle nieuwsberichten</h1>
+
+    <a class="btn btn-primary mb-3" href="{{ route('news.create') }}">Nieuw nieuwsbericht</a>
+
+    @if ($newsItems->count() === 0)
+        <p>Geen nieuws gevonden.</p>
+    @else
+        <ul class="list-group">
+            @foreach ($newsItems as $news)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ $news->title }}</strong><br>
+                        <small class="text-muted">{{ $news->created_at }}</small>
+                    </div>
+
+                    <a class="btn btn-sm btn-secondary" href="{{ route('news.edit', $news) }}">Bewerken</a>
+                </li>
+            @endforeach
+        </ul>
+    @endif
+
+</x-site-layout>
