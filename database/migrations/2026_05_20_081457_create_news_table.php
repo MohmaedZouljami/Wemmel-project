@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('Wemmel gemeente');
+            $table->string('title');
             $table->text('content');
             $table->string('author')->nullable();
             $table->timestamps();
+
         });
 
     }
