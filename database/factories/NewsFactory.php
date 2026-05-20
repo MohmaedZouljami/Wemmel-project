@@ -22,6 +22,8 @@ class NewsFactory extends Factory
             'content' => fake()->paragraph(4),
             'author' => fake()->name(),
             'category' => fake()->word(),
+            'user_id' => rand(1, 50),
+
 
         ];
     }

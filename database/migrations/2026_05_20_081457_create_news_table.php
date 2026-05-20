@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('author');
             $table->timestamps();
             $table->string('category')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+
 
 
         });
