@@ -10,6 +10,6 @@ class NewsController extends Controller
     {
         $newsItems = News::get();
 
-        return view('index.blade.php.index', compact('newsItems'));
+        return view('news.index', compact('newsItems'));
     }
 }
