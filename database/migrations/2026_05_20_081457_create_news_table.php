@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->string('author')->nullable();
+            $table->string('author');
             $table->timestamps();
+            $table->string('category')->nullable();
+
 
         });
 

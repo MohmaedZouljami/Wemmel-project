@@ -21,6 +21,8 @@ class NewsFactory extends Factory
             'title' => fake()->sentence(),
             'content' => fake()->paragraph(4),
             'author' => fake()->name(),
+            'category' => fake()->word(),
+
         ];
     }
 }
