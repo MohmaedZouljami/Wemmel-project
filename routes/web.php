@@ -18,7 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('profiel', ProfileController::class)->only(['edit', 'update', 'destroy']);
 
     Route::prefix('admin')->group(function () {
-        Route::resource('news', NieuwsController::class)->except(['index', 'show']);
+        Route::resource('news', NieuwsController::class, ['parameters' => ['news' => 'nieuws']])->except(['index', 'show']);
         Route::resource('faq', FaqController::class)->except(['index']);
 
         Route::get('gebruikers', [GebruikerController::class, 'index'])->name('gebruikers.index');

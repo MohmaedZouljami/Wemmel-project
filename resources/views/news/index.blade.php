@@ -21,9 +21,9 @@
 
                 @auth
                     @if(auth()->user()->is_admin)
-                        <a href="{{ route('news.edit', $news) }}" class="btn btn-secondary btn-sm">Bewerken</a>
+                        <a href="/admin/news/{{ $news->id }}/edit" class="btn btn-secondary btn-sm">Bewerken</a>
 
-                        <form action="{{ route('news.destroy', $news) }}" method="POST" style="display:inline">
+                        <form action="/admin/news/{{ $news->id }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger btn-sm" type="submit">Verwijderen</button>
