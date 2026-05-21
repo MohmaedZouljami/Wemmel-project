@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn() => view('welcome'))->name('home');
 
-Route::resource('news', NieuwsController::class)->only(['index', 'show']);
+Route::resource('news', NieuwsController::class, ['parameters' => ['news' => 'nieuws']])->only(['index', 'show']);
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 Route::resource('contact', ContactController::class)->only(['index', 'store']);
 

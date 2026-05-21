@@ -15,7 +15,7 @@ class NieuwsController extends Controller
 
     public function show(Nieuws $nieuws)
     {
-        return view('news.show', compact('nieuws'));
+        return view('news.show', ['news' => $nieuws]);
     }
 
     public function create()
@@ -25,6 +25,6 @@ class NieuwsController extends Controller
 
     public function edit(Nieuws $nieuws)
     {
-        return view('news.edit', compact('nieuws'));
+        return view('news.edit', ['news' => $nieuws]);
     }
 }
