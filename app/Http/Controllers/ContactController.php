@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMail;
 use App\Models\ContactBericht;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -27,6 +29,13 @@ class ContactController extends Controller
             'onderwerp' => $request->input('onderwerp'),
             'bericht' => $request->input('bericht'),
         ]);
+
+        Mail::to('admin@ehb.be')->send(new ContactMail(
+            $request->input('naam'),
+            $request->input('email'),
+            $request->input('onderwerp'),
+            $request->input('bericht'),
+        ));
 
         return redirect()->route('contact.index')->with('success', 'Uw bericht is verzonden!');
     }

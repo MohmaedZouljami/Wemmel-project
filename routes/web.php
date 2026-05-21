@@ -21,7 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profiel', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profiel', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::prefix('admin')->group(function () {
+    // Alleen admins
+    Route::prefix('admin')->middleware('admin')->group(function () {
         Route::resource('news', NieuwsController::class, ['parameters' => ['news' => 'nieuws']])->except(['index', 'show']);
         Route::resource('faq', FaqController::class)->except(['index']);
         Route::get('gebruikers', [GebruikerController::class, 'index'])->name('gebruikers.index');
