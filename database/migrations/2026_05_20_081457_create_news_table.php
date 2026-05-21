@@ -1,27 +1,27 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Models;
 
-return new class extends Migration
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Nieuws extends Model
 {
-    public function up(): void
-    {
-        Schema::create('news', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->string('image')->nullable();
-            $table->string('category')->nullable();
-            $table->timestamp('published_at')->nullable();
-            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
-            $table->timestamps();
-        });
-    }
+    use HasFactory;
 
-    public function down(): void
+    protected $table = 'news';
+
+    protected $fillable = [
+        'title',
+        'content',
+        'image',
+        'category',
+        'published_at',
+        'user_id',
+    ];
+
+    public function gebruiker()
     {
-        Schema::dropIfExists('news');
+        return $this->belongsTo(User::class, 'user_id');
     }
-};
+}

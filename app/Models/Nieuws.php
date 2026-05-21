@@ -9,14 +9,14 @@ class Nieuws extends Model
 {
     use HasFactory;
 
-    protected $table = 'nieuws';
+    protected $table = 'news';
 
     protected $fillable = [
-        'titel',
-        'inhoud',
-        'afbeelding',
-        'categorie',
-        'gepubliceerd_op',
+        'title',
+        'content',
+        'image',
+        'category',
+        'published_at',
         'user_id',
     ];
 

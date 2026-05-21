@@ -1,24 +1,24 @@
 <?php
-use App\Http\Controllers\PageController;
+
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\NieuwsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NewsController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', fn() => view('welcome'))->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::resource('news', NieuwsController::class)->only(['index', 'show']);
+Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
+Route::resource('contact', ContactController::class)->only(['index', 'store']);
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/home', [PageController::class, 'home'])->name('home');
+    Route::resource('profiel', ProfileController::class)->only(['edit', 'update', 'destroy']);
 
-    Route::resource('news', NewsController::class);
+    Route::prefix('admin')->group(function () {
+        Route::resource('news', NieuwsController::class)->except(['index', 'show']);
+        Route::resource('faq', FaqController::class)->except(['index']);
+    });
 });
 
 require __DIR__.'/auth.php';
