@@ -19,7 +19,7 @@
                 <li class="nav-item"><a class="nav-link" href="/news">Nieuws</a></li>
                 <li class="nav-item"><a class="nav-link" href="/faq">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="/profile">Profiel</a></li>
+                <li class="nav-item"><a class="nav-link" href="/profiel">Profiel</a></li>
                 <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
             </ul>
         </div>

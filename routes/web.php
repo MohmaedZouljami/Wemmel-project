@@ -7,20 +7,23 @@ use App\Http\Controllers\NieuwsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// Publieke routes
 Route::get('/', fn() => view('welcome'))->name('home');
 Route::get('/dashboard', fn() => redirect()->route('home'))->name('dashboard')->middleware('auth');
-
+Route::get('/profiel/{user}', [ProfileController::class, 'show'])->name('profile.show');
 Route::resource('news', NieuwsController::class, ['parameters' => ['news' => 'nieuws']])->only(['index', 'show']);
 Route::get('/faq', [FaqController::class, 'index'])->name('faq.index');
 Route::resource('contact', ContactController::class)->only(['index', 'store']);
 
+// Ingelogde gebruiker
 Route::middleware('auth')->group(function () {
-    Route::resource('profiel', ProfileController::class)->only(['edit', 'update', 'destroy']);
+    Route::get('/profiel', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profiel', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profiel', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::prefix('admin')->group(function () {
         Route::resource('news', NieuwsController::class, ['parameters' => ['news' => 'nieuws']])->except(['index', 'show']);
         Route::resource('faq', FaqController::class)->except(['index']);
-
         Route::get('gebruikers', [GebruikerController::class, 'index'])->name('gebruikers.index');
         Route::get('gebruikers/create', [GebruikerController::class, 'create'])->name('gebruikers.create');
         Route::post('gebruikers', [GebruikerController::class, 'store'])->name('gebruikers.store');

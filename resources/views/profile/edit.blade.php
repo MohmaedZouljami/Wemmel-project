@@ -1,29 +1,42 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+<x-site-layout title="Mijn profiel">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
+    <h1>Mijn profiel</h1>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
+    @if(session('success'))
+        <div class="alert alert-success">{{ session('success') }}</div>
+    @endif
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
+    <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+        @csrf
+        @method('PATCH')
+
+        <div class="mb-3">
+            <label>Naam</label>
+            <input type="text" name="name" class="form-control" value="{{ auth()->user()->name }}" required>
         </div>
-    </div>
-</x-app-layout>
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" class="form-control" value="{{ auth()->user()->email }}" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label>Verjaardag</label>
+            <input type="date" name="verjaardag" class="form-control" value="{{ auth()->user()->verjaardag }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Over mij</label>
+            <textarea name="over_mij" class="form-control" rows="4">{{ auth()->user()->over_mij }}</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label>Profielfoto</label>
+            <input type="file" name="profielfoto" class="form-control">
+        </div>
+
+        <button class="btn btn-primary">Opslaan</button>
+
+    </form>
+
+</x-site-layout>
