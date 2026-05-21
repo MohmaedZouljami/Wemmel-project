@@ -15,6 +15,7 @@ class NieuwsController extends Controller
 
     public function show(Nieuws $nieuws)
     {
+        $nieuws->load('commentaren.gebruiker');
         return view('news.show', ['news' => $nieuws]);
     }
 

@@ -5,19 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nieuws extends Model
+class Commentaar extends Model
 {
     use HasFactory;
 
-    protected $table = 'news';
+    protected $table = 'commentaren';
 
     protected $fillable = [
-        'title',
-        'content',
-        'image',
-        'category',
-        'published_at',
+        'inhoud',
         'user_id',
+        'news_id',
     ];
 
     public function gebruiker()
@@ -25,8 +22,8 @@ class Nieuws extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function commentaren()
+    public function nieuws()
     {
-        return $this->hasMany(Commentaar::class, 'news_id');
+        return $this->belongsTo(Nieuws::class, 'news_id');
     }
 }

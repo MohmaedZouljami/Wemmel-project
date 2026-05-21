@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentaarController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FaqController;
@@ -21,6 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profiel', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profiel', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profiel', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::post('/news/{nieuws}/commentaar', [CommentaarController::class, 'store'])->name('commentaar.store');
+    Route::delete('/commentaar/{commentaar}', [CommentaarController::class, 'destroy'])->name('commentaar.destroy');
 
     // Alleen admins
     Route::prefix('admin')->middleware('admin')->group(function () {
