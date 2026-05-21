@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix('admin')->middleware('admin')->group(function () {
         Route::resource('news', NieuwsController::class, ['parameters' => ['news' => 'nieuws']])->except(['index', 'show']);
         Route::resource('faq', FaqController::class)->except(['index']);
+        Route::post('faq/categorie', [FaqController::class, 'storeCategorie'])->name('faq.categorie.store');
+        Route::delete('faq/categorie/{categorie}', [FaqController::class, 'destroyCategorie'])->name('faq.categorie.destroy');
         Route::get('gebruikers', [GebruikerController::class, 'index'])->name('gebruikers.index');
         Route::get('gebruikers/create', [GebruikerController::class, 'create'])->name('gebruikers.create');
         Route::post('gebruikers', [GebruikerController::class, 'store'])->name('gebruikers.store');

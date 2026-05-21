@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $title }}</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -19,8 +18,21 @@
                 <li class="nav-item"><a class="nav-link" href="/news">Nieuws</a></li>
                 <li class="nav-item"><a class="nav-link" href="/faq">FAQ</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
-                <li class="nav-item"><a class="nav-link" href="/profiel">Profiel</a></li>
-                <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                @auth
+                    <li class="nav-item"><a class="nav-link" href="/profiel">Profiel</a></li>
+                    @if(auth()->user()->is_admin)
+                        <li class="nav-item"><a class="nav-link" href="/admin/gebruikers">Beheer</a></li>
+                    @endif
+                    <li class="nav-item">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link text-white">Uitloggen</button>
+                        </form>
+                    </li>
+                @else
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/register">Registreer</a></li>
+                @endauth
             </ul>
         </div>
     </div>

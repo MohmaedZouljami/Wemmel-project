@@ -42,4 +42,17 @@ class FaqController extends Controller
         $faq->delete();
         return redirect()->route('faq.index')->with('success', 'Vraag verwijderd!');
     }
+
+    public function storeCategorie(Request $request)
+    {
+        $request->validate(['naam' => 'required']);
+        FaqCategorie::create(['naam' => $request->input('naam')]);
+        return redirect()->route('faq.index')->with('success', 'Categorie toegevoegd!');
+    }
+
+    public function destroyCategorie(FaqCategorie $categorie)
+    {
+        $categorie->delete();
+        return redirect()->route('faq.index')->with('success', 'Categorie verwijderd!');
+    }
 }
