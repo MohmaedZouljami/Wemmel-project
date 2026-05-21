@@ -38,7 +38,7 @@ class NieuwsController extends Controller
         Nieuws::create([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
-            'category' => $request->category,
+            'category' => $request->input('category'),
             'image' => $imagePad,
             'published_at' => now(),
             'user_id' => auth()->id(),
@@ -50,5 +50,33 @@ class NieuwsController extends Controller
     public function edit(Nieuws $nieuws)
     {
         return view('news.edit', ['news' => $nieuws]);
+    }
+
+    public function update(Request $request, Nieuws $nieuws)
+    {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $imagePad = $nieuws->image;
+        if ($request->hasFile('image')) {
+            $imagePad = $request->file('image')->store('news', 'public');
+        }
+
+        $nieuws->update([
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'category' => $request->input('category'),
+            'image' => $imagePad,
+        ]);
+
+        return redirect()->route('news.index')->with('success', 'Nieuwsbericht bijgewerkt!');
+    }
+
+    public function destroy(Nieuws $nieuws)
+    {
+        $nieuws->delete();
+        return redirect()->route('news.index')->with('success', 'Nieuwsbericht verwijderd!');
     }
 }
