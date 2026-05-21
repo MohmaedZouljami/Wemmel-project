@@ -10,23 +10,23 @@
         @csrf
 
         <div class="mb-3">
-            <label>Naam</label>
-            <input type="text" name="naam" class="form-control" required>
+            <label for="naam">Naam</label>
+            <input type="text" id="naam" name="naam" class="form-control" required minlength="2" maxlength="100">
         </div>
 
         <div class="mb-3">
-            <label>Email</label>
-            <input type="email" name="email" class="form-control" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label>Onderwerp</label>
-            <input type="text" name="onderwerp" class="form-control" required>
+            <label for="onderwerp">Onderwerp</label>
+            <input type="text" id="onderwerp" name="onderwerp" class="form-control" required minlength="2" maxlength="200">
         </div>
 
         <div class="mb-3">
-            <label>Bericht</label>
-            <textarea name="bericht" class="form-control" rows="5" required></textarea>
+            <label for="bericht">Bericht</label>
+            <textarea id="bericht" name="bericht" class="form-control" rows="5" required minlength="10"></textarea>
         </div>
 
         <button class="btn btn-primary">Verstuur</button>
