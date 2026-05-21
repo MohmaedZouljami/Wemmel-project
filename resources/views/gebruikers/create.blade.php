@@ -2,17 +2,25 @@
 
     <h1>Nieuwe gebruiker aanmaken</h1>
 
+    @if($errors->any())
+        <div class="alert alert-danger">
+            @foreach($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
+
     <form method="POST" action="{{ route('gebruikers.store') }}">
         @csrf
 
         <div class="mb-3">
             <label>Naam</label>
-            <input type="text" name="name" class="form-control" required>
+            <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
         </div>
 
         <div class="mb-3">
             <label>Email</label>
-            <input type="email" name="email" class="form-control" required>
+            <input type="email" name="email" class="form-control" value="{{ old('email') }}" required>
         </div>
 
         <div class="mb-3">
