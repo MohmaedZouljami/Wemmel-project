@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\GebruikerController;
 use App\Http\Controllers\NieuwsController;
@@ -23,6 +24,7 @@ Route::middleware('auth')->group(function () {
 
     // Alleen admins
     Route::prefix('admin')->middleware('admin')->group(function () {
+        Route::get('dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::resource('news', NieuwsController::class, ['parameters' => ['news' => 'nieuws']])->except(['index', 'show']);
         Route::resource('faq', FaqController::class)->except(['index']);
         Route::post('faq/categorie', [FaqController::class, 'storeCategorie'])->name('faq.categorie.store');

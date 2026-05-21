@@ -21,7 +21,8 @@
                 @auth
                     <li class="nav-item"><a class="nav-link" href="/profiel">Profiel</a></li>
                     @if(auth()->user()->is_admin)
-                        <li class="nav-item"><a class="nav-link" href="/admin/gebruikers">Beheer</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/admin/dashboard">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/admin/gebruikers">Gebruikers</a></li>
                     @endif
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
