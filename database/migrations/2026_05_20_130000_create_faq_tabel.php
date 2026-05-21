@@ -8,18 +8,24 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('contact_berichten', function (Blueprint $table) {
+        Schema::create('faq_categorieen', function (Blueprint $table) {
             $table->id();
             $table->string('naam');
-            $table->string('email');
-            $table->string('onderwerp');
-            $table->text('bericht');
+            $table->timestamps();
+        });
+
+        Schema::create('faq_vragen', function (Blueprint $table) {
+            $table->id();
+            $table->string('vraag');
+            $table->text('antwoord');
+            $table->foreignId('faq_categorie_id')->constrained('faq_categorieen')->cascadeOnDelete();
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('contact_berichten');
+        Schema::dropIfExists('faq_vragen');
+        Schema::dropIfExists('faq_categorieen');
     }
 };

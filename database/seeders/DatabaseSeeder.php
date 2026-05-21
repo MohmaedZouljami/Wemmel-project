@@ -10,7 +10,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Admin account aanmaken
         User::create([
             'name' => 'admin',
             'email' => 'admin@ehb.be',
@@ -18,7 +17,6 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true,
         ]);
 
-        // Test gebruiker
         User::create([
             'name' => 'mohamed',
             'email' => 'mohamed@zouljami.com',
@@ -26,9 +24,9 @@ class DatabaseSeeder extends Seeder
             'is_admin' => false,
         ]);
 
-        // Nieuws seeder uitvoeren
         $this->call([
             NewsSeeder::class,
+            FaqSeeder::class,
         ]);
     }
 }
