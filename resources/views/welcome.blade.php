@@ -2,7 +2,7 @@
 
     {{-- Hero sectie met foto --}}
     <div class="position-relative mb-5" style="height: 500px; overflow: hidden; border-radius: 12px;">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400"
+        <img src="/images/kasteel.jpg"
              alt="Gemeente Wemmel"
              style="width:100%; height:100%; object-fit:cover; filter:brightness(0.5);">
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
@@ -16,10 +16,21 @@
     {{-- Laatste nieuws --}}
     <h2 class="mb-4 fw-bold">Laatste nieuws</h2>
     <div class="row mb-4">
+        @php
+            $fotos = [
+                'Sport' => '/images/sport.jpeg',
+                'Mobiliteit' => '/images/mobiliteit.jpg',
+                'Evenementen' => '/images/evenementen.jpg',
+                'Cultuur' => '/images/cultuur.jpg',
+                'Jeugd' => '/images/jeugd.jpg',
+                'Algemeen' => '/images/kasteel.jpg',
+            ];
+        @endphp
+
         @foreach($nieuwsItems as $nieuws)
             <div class="col-md-4 mb-3">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
+                    <img src="{{ $fotos[$nieuws->category] ?? '/images/kasteel.jpg' }}"
                          class="card-img-top" style="height:200px; object-fit:cover;" alt="nieuws">
                     <div class="card-body">
                         <span class="badge bg-success mb-2">{{ $nieuws->category ?? 'Algemeen' }}</span>
