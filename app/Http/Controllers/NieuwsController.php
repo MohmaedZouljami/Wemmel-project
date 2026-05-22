@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class NieuwsController extends Controller
 {
+    public function home()
+    {
+        $nieuwsItems = Nieuws::latest()->take(6)->get();
+        return view('welcome', compact('nieuwsItems'));
+    }
+
     public function index()
     {
         $newsItems = Nieuws::latest()->get();

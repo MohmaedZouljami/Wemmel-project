@@ -10,7 +10,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 // Publieke routes
-Route::get('/', fn() => view('welcome'))->name('home');
+Route::get('/', [NieuwsController::class, 'home'])->name('home');
 Route::get('/dashboard', fn() => redirect()->route('home'))->name('dashboard')->middleware('auth');
 Route::get('/profiel/{user}', [ProfileController::class, 'show'])->name('profile.show');
 Route::resource('news', NieuwsController::class, ['parameters' => ['news' => 'nieuws']])->only(['index', 'show']);
