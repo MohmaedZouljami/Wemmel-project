@@ -20,13 +20,13 @@ De website biedt nieuws, FAQ, contact en gebruikersbeheer voor inwoners en het g
 ![Nieuws](public/images/homepage.png)
 
 ### Nieuwspagina
-![Nieuws](public/images/nieuwspagina.png)
+![Nieuws](public/images/niewspagina.png)
 
 ### FAQ pagina
 ![FAQ](public/images/faq.png)
 
 ### Contact pagina
-![Contact](public/images/contact.jng)
+![Contact](public/images/contact.png)
 
 ### Admin Dashboard
 ![Dashboard](public/images/dashboard.png)
