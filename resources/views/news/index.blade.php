@@ -20,7 +20,7 @@
                 'Evenementen' => '/images/gemeentefeest.jpg',
                 'Cultuur' => '/images/bib-wemmel.jpg',
                 'Jeugd' => '/images/zomerkamp.jpg',
-                'Infrastructuur' => '/images/markt-wemmel.jpg',
+                'Infrastructuur' => '/images/wemmel2.jpg',
         ];
     @endphp
 

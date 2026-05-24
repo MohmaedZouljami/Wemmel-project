@@ -1,8 +1,19 @@
 <x-site-layout title="{{ $news->title }}">
 
+    @php
+        $fotos = [
+            'Sport' => '/images/sport.jpeg',
+            'Mobiliteit' => '/images/fiets.jpg',
+            'Evenementen' => '/images/gemeentefeest.jpg',
+            'Cultuur' => '/images/bib-wemmel.jpg',
+            'Jeugd' => '/images/zomerkamp.jpg',
+            'Infrastructuur' => '/images/markt-wemmel.jpg',
+        ];
+    @endphp
+
     {{-- Hero --}}
     <div class="position-relative mb-4" style="height: 300px; overflow: hidden; border-radius: 12px;">
-        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1400"
+        <img src="{{ $fotos[$news->category] ?? '/images/kasteel.jpg' }}"
              style="width:100%; height:100%; object-fit:cover; filter:brightness(0.5);" alt="nieuws">
         <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
             <span class="badge bg-success mb-2">{{ $news->category ?? 'Algemeen' }}</span>

@@ -23,8 +23,8 @@
                 'Evenementen' => '/images/gemeentefeest.jpg',
                 'Cultuur' => '/images/bib-wemmel.jpg',
                 'Jeugd' => '/images/zomerkamp.jpg',
-                'Algemeen' => '/images/kasteel.jpg',
-            ];
+                        'Infrastructuur' => '/images/markt-wemmel.jpg',
+];
         @endphp
 
         @foreach($nieuwsItems as $nieuws)
