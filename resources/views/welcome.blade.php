@@ -19,10 +19,10 @@
         @php
             $fotos = [
                 'Sport' => '/images/sport.jpeg',
-                'Mobiliteit' => '/images/mobiliteit.jpg',
-                'Evenementen' => '/images/evenementen.jpg',
-                'Cultuur' => '/images/cultuur.jpg',
-                'Jeugd' => '/images/jeugd.jpg',
+                'Mobiliteit' => '/images/fiets.jpg',
+                'Evenementen' => '/images/gemeentefeest.jpg',
+                'Cultuur' => '/images/bib-wemmel.jpg',
+                'Jeugd' => '/images/zomerkamp.jpg',
                 'Algemeen' => '/images/kasteel.jpg',
             ];
         @endphp

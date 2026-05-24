@@ -13,11 +13,22 @@
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
+    @php
+        $fotos = [
+                'Sport' => '/images/sport.jpeg',
+                'Mobiliteit' => '/images/fiets.jpg',
+                'Evenementen' => '/images/gemeentefeest.jpg',
+                'Cultuur' => '/images/bib-wemmel.jpg',
+                'Jeugd' => '/images/zomerkamp.jpg',
+                'Infrastructuur' => '/images/markt-wemmel.jpg',
+        ];
+    @endphp
+
     <div class="row">
         @foreach ($newsItems as $news)
             <div class="col-md-4 mb-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=400"
+                    <img src="{{ $fotos[$news->category] ?? '/images/kasteel.jpg' }}"
                          class="card-img-top" style="height:200px; object-fit:cover;" alt="nieuws">
                     <div class="card-body">
                         <span class="badge bg-success mb-2">{{ $news->category ?? 'Algemeen' }}</span>
