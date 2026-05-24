@@ -17,24 +17,23 @@ De website biedt nieuws, FAQ, contact en gebruikersbeheer voor inwoners en het g
 ## Screenshots
 
 ### Homepagina
-![Homepagina](public/images/screenshots/home.png)
+![Nieuws](public/images/homepage.png)
 
 ### Nieuwspagina
-![Nieuws](public/images/screenshots/nieuws.png)
+![Nieuws](public/images/nieuwspagina.png)
 
 ### FAQ pagina
-![FAQ](public/images/screenshots/faq.png)
+![FAQ](public/images/faq.png)
 
 ### Contact pagina
-![Contact](public/images/screenshots/contact.png)
+![Contact](public/images/contact.png)
 
 ### Admin Dashboard
-![Dashboard](public/images/screenshots/dashboard.png)
+![Dashboard](public/images/dashboard.png)
 
 ### Profielpagina
-![Profiel](public/images/screenshots/profiel.png)
+![Profiel](public/images/profiel.png)
 
-## Technische vereisten implementatie
 
 ### Views
 - Twee layouts: `resources/views/components/site-layout.blade.php` en `resources/views/layouts/guest.blade.php`
