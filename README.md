@@ -1,58 +1,136 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Gemeente Wemmel - Laravel Project
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Projectbeschrijving
+Dit is de officiële website van de gemeente Wemmel (1780), gebouwd met Laravel 13.
+De website biedt nieuws, FAQ, contact en gebruikersbeheer voor inwoners en het gemeentebestuur.
 
-## About Laravel
+## Functionaliteiten
+- Login/Register/Uitloggen met Remember me en wachtwoord reset
+- Admin en gewone gebruiker rollen
+- Profielpagina (publiek + bewerkbaar)
+- Nieuws (lijst, detail, CRUD voor admins)
+- FAQ met categorieën (CRUD voor admins)
+- Contactformulier met email naar admin
+- Admin dashboard voor contactberichten
+- Commentaarsysteem voor nieuwsitems
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Screenshots
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Homepagina
+![Homepagina](public/images/screenshots/home.png)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Nieuwspagina
+![Nieuws](public/images/screenshots/nieuws.png)
 
-## Learning Laravel
+### FAQ pagina
+![FAQ](public/images/screenshots/faq.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Contact pagina
+![Contact](public/images/screenshots/contact.png)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Admin Dashboard
+![Dashboard](public/images/screenshots/dashboard.png)
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Profielpagina
+![Profiel](public/images/screenshots/profiel.png)
 
-## Agentic Development
+## Technische vereisten implementatie
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Views
+- Twee layouts: `resources/views/components/site-layout.blade.php` en `resources/views/layouts/guest.blade.php`
+- Components: `x-site-layout` gebruikt in alle views
+- Control structures: `@if`, `@foreach`, `@auth` in alle blade bestanden
+- XSS protection: Blade `{{ }}` syntax escapet automatisch
+- CSRF protection: `@csrf` in alle formulieren
+- Client-side validatie: `required`, `minlength`, `type="email"` in alle formulieren
 
+### Routes
+- Alle routes gebruiken controller methods: `routes/web.php`
+- Middleware: `auth` en `admin` middleware op beveiligde routes
+- Gegroepeerde routes: `Route::middleware('auth')->group()` en `Route::prefix('admin')->middleware('admin')`
+
+### Controllers
+- `NieuwsController` - nieuws CRUD
+- `FaqController` - FAQ CRUD
+- `ContactController` - contactformulier
+- `ProfileController` - profielbeheer
+- `GebruikerController` - gebruikersbeheer
+- `DashboardController` - admin dashboard
+- `CommentaarController` - commentaren
+
+### Models en relaties
+- `User` hasMany `Nieuws`, hasMany `Commentaar`
+- `Nieuws` belongsTo `User`, hasMany `Commentaar`
+- `FaqCategorie` hasMany `FaqVraag`
+- `FaqVraag` belongsTo `FaqCategorie`
+- `Commentaar` belongsTo `Nieuws`, belongsTo `User`
+
+### Database
+- Migraties: `database/migrations/`
+- Seeders: `database/seeders/DatabaseSeeder.php`
+- Default data aangemaakt via seeders
+
+### Authentication
+- Login/logout/register/remember me/wachtwoord reset
+- Default admin: `admin@ehb.be` / `Password!321`
+
+## Installatiehandleiding
+
+### Vereisten
+- PHP 8.4
+- Composer
+- SQLite
+
+### Installatie stappen
+
+1. Clone de repository:
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/MohmaedZouljami/Wemmel-project.git
+cd Wemmel-project
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+2. Installeer dependencies:
+```bash
+composer install
+npm install
+```
 
-## Contributing
+3. Kopieer .env bestand:
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+4. Database aanmaken en seeden:
+```bash
+php artisan migrate:fresh --seed
+```
 
-## Code of Conduct
+5. Storage link aanmaken:
+```bash
+php artisan storage:link
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+6. Start de server:
+```bash
+php artisan serve
+```
 
-## Security Vulnerabilities
+7. Ga naar `http://localhost:8000`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Default admin account
+- **Email:** admin@ehb.be
+- **Wachtwoord:** Password!321
 
-## License
+## Gebruikte bronnen
+- Laravel documentatie: https://laravel.com/docs
+- Bootstrap 5 documentatie: https://getbootstrap.com/docs$
+- Unsplash (gratis foto's): https://unsplash.com
+- PHP documentatie: https://www.php.net/docs.php
+- Laravel Blade templates: https://laravel.com/docs/blade
+- Laravel Authentication: https://laravel.com/docs/authentication
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## AI gebruik
+AI (Claude van Anthropic) werd gebruikt voor hulp bij de visuele kant van het project,
+zoals het opmaken van de pagina's en het stylen van de interface met Bootstrap.
